@@ -197,5 +197,10 @@ void app_main(void)
     esp_wifi_set_ps(WIFI_PS_NONE);
 #endif // CONFIG_EXAMPLE_CONNECT_WIFI
 
+    ESP_LOGI(TAG,"Slow down before OTA process beginning .....");
+    for (int i = 0; i < 120; i++) {
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
+    }
+
     xTaskCreate(&simple_ota_example_task, "ota_example_task", 8192, NULL, 5, NULL);
 }
